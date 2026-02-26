@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelajaran Islam - Portal Pendidikan Agama</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Building Base -->
+                    <rect x="15" y="35" width="70" height="55" fill="white" stroke="white" stroke-width="1.5"/>
+                    <!-- Roof -->
+                    <polygon points="15,35 50,10 85,35" fill="#1a5f3f" stroke="white" stroke-width="1.5"/>
+                    <!-- Door -->
+                    <rect x="42" y="60" width="16" height="28" fill="#d4af37" stroke="white" stroke-width="1"/>
+                    <circle cx="55" cy="72" r="1.5" fill="white"/>
+                    <!-- Windows Row 1 -->
+                    <rect x="22" y="42" width="8" height="8" fill="#d4af37" stroke="white" stroke-width="0.8"/>
+                    <rect x="36" y="42" width="8" height="8" fill="#d4af37" stroke="white" stroke-width="0.8"/>
+                    <rect x="50" y="42" width="8" height="8" fill="#d4af37" stroke="white" stroke-width="0.8"/>
+                    <rect x="64" y="42" width="8" height="8" fill="#d4af37" stroke="white" stroke-width="0.8"/>
+                    <!-- Windows Row 2 -->
+                    <rect x="22" y="57" width="8" height="8" fill="#d4af37" stroke="white" stroke-width="0.8"/>
+                    <rect x="64" y="57" width="8" height="8" fill="#d4af37" stroke="white" stroke-width="0.8"/>
+                    <!-- Flag on roof -->
+                    <line x1="50" y1="10" x2="50" y2="3" stroke="white" stroke-width="1.2"/>
+                    <polygon points="50,3 56,5 50,7" fill="#d4af37"/>
+                </svg>
+                <span class="logo-text">Islamic Learning Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#task">Tugas & Jadwal</a></li>
+                <li><a href="#contact">Hubungi Kami</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Pembelajaran Islam Profesional</h1>
+                <p>Platform edukasi agama Islam terpercaya untuk memperdalam pemahaman ajaran dan nilai-nilai spiritual</p>
+                <button class="btn btn-primary" onclick="document.getElementById('task').scrollIntoView({behavior: 'smooth'})">
+                    Kelola Tugas Anda
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>Tentang Platform Kami</h2>
+                <p>Platform pembelajaran agama Islam yang dirancang khusus untuk membantu Anda memahami dan memperdalam pengamalan ajaran Islam Universitas Pelita Bangsa.</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="feature-icon">📖</div>
+                        <h3>Materi Lengkap</h3>
+                        <p>Akses berbagai topik pembelajaran Islam</p>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon">📋</div>
+                        <h3>Manajemen Tugas</h3>
+                        <p>Kelola jadwal pembelajaran Anda dengan mudah</p>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon">✨</div>
+                        <h3>User Friendly</h3>
+                        <p>Interface yang simple dan mudah digunakan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Task Management Section -->
+    <section id="task" class="task-section">
+        <div class="container">
+            <h2 class="section-title">Manajemen Tugas Pembelajaran</h2>
+            
+            <!-- Input Section -->
+            <div class="task-input-container">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="taskInput" 
+                        class="task-input" 
+                        placeholder="Tambahkan topik pembelajaran..."
+                        onkeypress="handleKeyPress(event)">
+                    <button class="btn btn-add" onclick="addTask()">Tambah</button>
+                </div>
+            </div>
+
+            <!-- Task List -->
+            <div class="task-list-container">
+                <div class="task-filters">
+                    <button class="filter-btn active" onclick="filterTasks('semua')">Semua</button>
+                    <button class="filter-btn" onclick="filterTasks('aktif')">Sedang Dipelajari</button>
+                    <button class="filter-btn" onclick="filterTasks('selesai')">Selesai</button>
+                </div>
+
+                <ul id="taskList" class="task-list"></ul>
+
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-icon">�</div>
+                    <p>Belum ada tugas pembelajaran. Mulai dengan menambahkan topik baru!</p>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="task-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalTasks">0</div>
+                    <div class="stat-label">Total Topik</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedTasks">0</div>
+                    <div class="stat-label">Selesai</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="pendingTasks">0</div>
+                    <div class="stat-label">Sedang Dipelajari</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Islamic Learning Hub</h4>
+                    <p>Platform Agama islam.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontak</h4>
+                    <p>📧 Email: <a href="mailto:rizkikurnia309@gmail.com">rizkikurnia309@gmail.com</a></p>
+                    <p>📱 WhatsApp: <a href="https://wa.me/6289606114306" class="whatsapp-link" target="_blank">+62 896 0611 4306</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Ikuti Kami</h4>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Islamic Learning Hub. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Edit -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Topik Pembelajaran</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="editTaskInput" class="task-input" placeholder="Edit deskripsi topik...">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+                <button class="btn btn-primary" onclick="saveEdit()">Simpan Perubahan</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
